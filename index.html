@@ -109,63 +109,6 @@
                 </section>
             </div>
 
-            <!-- Calendar Section -->
-            <section id="calendar-section" class="page-content">
-                <div class="calendar-header">
-                    <button id="prev-month">&lt;</button>
-                    <h2 id="current-month">January 2026</h2>
-                    <button id="next-month">&gt;</button>
-                </div>
-                <div id="calendar-grid"></div>
-                <div id="event-details">
-                    <!-- Selected day events -->
-                </div>
-                <div class="quick-edit">
-                    <h3>Quick Edit</h3>
-                    <div class="color-picker" id="admin-color-picker">
-                        <div class="color-swatch active" data-color="#34C759" style="background: #34C759;"></div>
-                        <div class="color-swatch" data-color="#007AFF" style="background: #007AFF;"></div>
-                        <div class="color-swatch" data-color="#FFD60A" style="background: #FFD60A;"></div>
-                        <div class="color-swatch" data-color="#FF3B30" style="background: #FF3B30;"></div>
-                    </div>
-                    <textarea id="event-note" placeholder="Add note for calendar date..."></textarea>
-                </div>
-            </section>
-
-            <!-- Sinking Fund Section -->
-            <section id="sinking-fund-section" class="page-content">
-                <div class="summary-cards">
-                    <div class="card income">
-                        <span>Total Income</span>
-                        <h2 id="total-income">₱0.00</h2>
-                    </div>
-                    <div class="card expense">
-                        <span>Total Expenses</span>
-                        <h2 id="total-expense">₱0.00</h2>
-                    </div>
-                </div>
-                <div class="transaction-form">
-                    <input type="text" id="txn-desc" placeholder="Donation 1000 pesos">
-                    <select id="txn-category">
-                        <option value="donation">Donation</option>
-                        <option value="caroling">Caroling</option>
-                        <option value="uniforms">Uniforms</option>
-                        <option value="events">Events</option>
-                        <option value="misc">Miscellaneous</option>
-                    </select>
-                    <button id="add-txn">Add Transaction</button>
-                </div>
-                <div id="transaction-history"></div>
-            </section>
-
-            <!-- Members Section -->
-            <section id="members-section" class="page-content">
-                <div class="section-actions">
-                    <button class="btn-primary" id="add-member-btn">+ Add Member</button>
-                </div>
-                <div id="members-list"></div>
-            </section>
-
         </main>
 
         <!-- Scroll to Top -->
@@ -177,26 +120,28 @@
         <button class="fab" id="save-attendance" title="Save Attendance">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </button>
+
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
-            <button class="nav-item active" data-target="attendance-section">
+            <button class="nav-item active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M10 12l2 2 4-4"/></svg>
                 <span>Attendance</span>
             </button>
-            <button class="nav-item" data-target="calendar-section">
+            <a href="events.html" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
                 <span>Events</span>
-            </button>
-            <button class="nav-item" data-target="sinking-fund-section">
+            </a>
+            <a href="finance.html" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
                 <span>Finance</span>
-            </button>
-            <button class="nav-item" data-target="members-section">
+            </a>
+            <a href="members.html" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 <span>Members</span>
-            </button>
+            </a>
         </nav>
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>
