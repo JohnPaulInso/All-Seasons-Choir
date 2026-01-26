@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Calendar - All Seasons' Choir</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#D97706">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D97706;
+            --primary-dark: #B45309;
+            --primary-light: #FDE68A;
+            --secondary: #1E293B;
+            --bg-main: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --surface: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #94A3B8;
+            --border-light: #F1F5F9;
+            --border-medium: #E2E8F0;
+            --orange-pastel: #FFE4CC;
+            --orange-text: #C2410C;
+            --blue-pastel: #DBEAFE;
+            --blue-text: #1E40AF;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-md: 0 4px 12px -1px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: #E2E8F0;
+            color: var(--text-primary);
+            overflow: hidden;
+            height: 100dvh;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--bg-main);
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        .main-header {
+            padding: 12px 20px 14px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-medium);
+            z-index: 1001;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .app-logo {
+            height: 18px;
+            object-fit: contain;
+        }
+
+        .profile-card-empty {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            border: 1px solid var(--border-medium);
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .label-mini {
+            text-transform: uppercase;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .main-header h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        /* Calendar Container */
+        main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            scrollbar-width: none;
+        }
+        main::-webkit-scrollbar { display: none; }
+
+        .calendar-container {
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 8px;
+        }
+
+        .calendar-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .nav-btn {
+            background: var(--surface);
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .nav-btn:hover {
+            background: var(--bg-secondary);
+            border-color: var(--primary);
+        }
+
+        .calendar-grid {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .weekday {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 8px 0;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            padding: 4px;
+            gap: 2px;
+        }
+
+        .day:hover {
+            background: var(--bg-secondary);
+        }
+
+        .day.other-month {
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .day.today {
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+        }
+
+        .day.today:hover {
+            background: var(--primary-dark);
+        }
+
+        .day-number {
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .event-chip {
+            font-size: 6px;
+            font-weight: 700;
+            padding: 2px 4px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .chip-sunday {
+            background: var(--orange-pastel);
+            color: var(--orange-text);
+        }
+
+        .chip-saturday {
+            background: var(--blue-pastel);
+            color: var(--blue-text);
+        }
+
+        .legend {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+        }
+
+        .legend-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-chip {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .legend-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-top">
+                <img src="logo_asc.png" alt="ASC Logo" class="app-logo">
+                <div class="profile-card-empty">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+            </div>
+            <div class="header-content">
+                <span class="label-mini">Events</span>
+                <h1 id="current-month-year">January 2026</h1>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="nav-btn" id="prev-month">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <h2 id="month-title">January 2026</h2>
+                    <button class="nav-btn" id="next-month">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+
+                <div class="calendar-grid">
+                    <div class="weekdays">
+                        <div class="weekday">Sun</div>
+                        <div class="weekday">Mon</div>
+                        <div class="weekday">Tue</div>
+                        <div class="weekday">Wed</div>
+                        <div class="weekday">Thu</div>
+                        <div class="weekday">Fri</div>
+                        <div class="weekday">Sat</div>
+                    </div>
+                    <div class="days" id="calendar-days"></div>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-title">Regular Events</div>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-chip chip-sunday">Sunday Service</div>
+                            <div class="legend-description">Every Sunday</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-chip chip-saturday">Choir Practice</div>
+                            <div class="legend-description">Every Saturday</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentDate = new Date();
+        currentDate.setDate(1); // Start at first of month
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            // Update headers
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                              'July', 'August', 'September', 'October', 'November', 'December'];
+            const monthTitle = `${monthNames[month]} ${year}`;
+            document.getElementById('month-title').textContent = monthTitle;
+            document.getElementById('current-month-year').textContent = monthTitle;
+
+            // Get calendar data
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+            
+            const daysContainer = document.getElementById('calendar-days');
+            daysContainer.innerHTML = '';
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Previous month days
+            for (let i = firstDay - 1; i >= 0; i--) {
+                const day = daysInPrevMonth - i;
+                const dayEl = createDayElement(day, true, month - 1, year);
+                daysContainer.appendChild(dayEl);
+            }
+
+            // Current month days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const isToday = date.getTime() === today.getTime();
+                const dayEl = createDayElement(day, false, month, year, isToday);
+                daysContainer.appendChild(dayEl);
+            }
+
+            // Next month days
+            const totalCells = daysContainer.children.length;
+            const remainingCells = 42 - totalCells; // 6 rows × 7 days
+            for (let day = 1; day <= remainingCells; day++) {
+                const dayEl = createDayElement(day, true, month + 1, year);
+                daysContainer.appendChild(dayEl);
+            }
+        }
+
+        function createDayElement(day, isOtherMonth, month, year, isToday = false) {
+            const div = document.createElement('div');
+            div.className = `day ${isOtherMonth ? 'other-month' : ''} ${isToday ? 'today' : ''}`;
+            
+            const dayNumber = document.createElement('div');
+            dayNumber.className = 'day-number';
+            dayNumber.textContent = day;
+            div.appendChild(dayNumber);
+
+            // Add event chips for Sundays and Saturdays
+            if (!isOtherMonth) {
+                const date = new Date(year, month, day);
+                const dayOfWeek = date.getDay();
+                
+                if (dayOfWeek === 0) { // Sunday
+                    const chip = document.createElement('div');
+                    chip.className = 'event-chip chip-sunday';
+                    chip.textContent = 'SUNDAY SERVICE';
+                    div.appendChild(chip);
+                } else if (dayOfWeek === 6) { // Saturday
+                    const chip = document.createElement('div');
+                    chip.className = 'event-chip chip-saturday';
+                    chip.textContent = 'CHOIR PRACTICE';
+                    div.appendChild(chip);
+                }
+            }
+
+            return div;
+        }
+
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            renderCalendar();
+        }
+
+        // Event listeners
+        document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
+        document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
+
+        // Initial render
+        renderCalendar();
+    </script>
+</body>
+</html>
