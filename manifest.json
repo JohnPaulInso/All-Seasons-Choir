@@ -1,14 +1,14 @@
 {
-  "name": "All Seasons' Choir Tracking",
-  "short_name": "ChoirTrack",
-  "description": "Premium choir management and tracking application.",
+  "name": "All Seasons Choir Tracker",
+  "short_name": "Choir Tracker",
+  "description": "Premium attendance and event tracker for the All Seasons Choir.",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#6C5CE7",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FF8C00",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/3293/3293810.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/3233/3233514.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

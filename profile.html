@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Member Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #F1F5F9;
+            color: #1E293B;
+            min-height: 100vh;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* ====== Top Bar ====== */
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 52px;
+            padding: 0 16px;
+            background: rgba(241, 245, 249, 0.95);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .topbar-left, .topbar-right {
+            display: flex; align-items: center; min-width: 70px;
+        }
+        .topbar-right { justify-content: flex-end; }
+
+        .topbar-center {
+            font-size: 16px; font-weight: 700; letter-spacing: -0.3px;
+            text-align: center;
+        }
+
+        .back-btn, .edit-btn {
+            display: flex; align-items: center; gap: 4px;
+            background: none; border: none;
+            font-size: 14px; font-weight: 600; color: #D97706;
+            cursor: pointer; padding: 10px 4px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .back-btn svg, .edit-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+        /* ====== Hero ====== */
+        .hero {
+            margin-top: 52px;
+            padding: 32px 20px 24px;
+            display: flex; flex-direction: column; align-items: center;
+            background: linear-gradient(180deg, #EEF2FF 0%, #F1F5F9 100%);
+            width: 100%;
+        }
+
+        .avatar {
+            width: 96px; height: 96px; border-radius: 50%;
+            background: linear-gradient(145deg, #FDE68A 0%, #F59E0B 60%, #D97706 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 34px; font-weight: 800; color: white;
+            margin-bottom: 16px; flex-shrink: 0;
+            box-shadow: 0 8px 28px rgba(245, 158, 11, 0.3), 0 0 0 4px rgba(255,255,255,0.7);
+        }
+
+        .hero-name {
+            font-size: 21px; font-weight: 800; letter-spacing: -0.4px;
+            text-align: center; margin-bottom: 4px;
+            max-width: 100%; word-break: break-word; overflow-wrap: break-word;
+            padding: 0 10px;
+        }
+
+        .hero-role {
+            font-size: 11px; font-weight: 700; color: #D97706;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-bottom: 2px; text-align: center;
+        }
+
+        .hero-since {
+            font-size: 12px; font-weight: 500; color: #94A3B8;
+            margin-bottom: 14px; text-align: center;
+        }
+
+        .chips {
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+            padding: 0 10px;
+        }
+
+        .chip {
+            font-size: 9px; font-weight: 700; padding: 4px 10px;
+            border-radius: 20px; text-transform: uppercase; letter-spacing: 0.8px;
+            display: inline-flex; align-items: center; gap: 3px;
+            white-space: nowrap;
+        }
+        .chip svg { width: 10px; height: 10px; }
+        .chip-voice { background: #FEF3C7; color: #92400E; }
+        .chip-director { background: #FAF5FF; color: #7C3AED; }
+        .chip-cebu { background: #F1F5F9; color: #475569; }
+        .chip-absent { background: #FEF2F2; color: #DC2626; }
+        .chip-leader { background: #EFF6FF; color: #2563EB; }
+        .chip-treasurer { background: #F0FDF4; color: #16A34A; }
+
+        /* ====== Stats ====== */
+        .stats {
+            display: grid; grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px; padding: 14px 20px 8px; width: 100%;
+        }
+
+        .stat-card {
+            background: white; border-radius: 14px;
+            padding: 14px 8px; text-align: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .stat-val {
+            font-size: 24px; font-weight: 800; letter-spacing: -1px;
+            line-height: 1; margin-bottom: 4px;
+        }
+        .stat-val.green { color: #16A34A; }
+        .stat-val.red { color: #DC2626; }
+        .stat-val.blue { color: #2563EB; }
+
+        .stat-lbl {
+            font-size: 8px; font-weight: 700; color: #94A3B8;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* ====== Section ====== */
+        .sect { padding: 0 20px; margin-bottom: 12px; width: 100%; }
+
+        .sect-title {
+            font-size: 11px; font-weight: 700; color: #94A3B8;
+            text-transform: uppercase; letter-spacing: 1.2px;
+            padding: 12px 0 8px;
+        }
+
+        /* ====== Info Card ====== */
+        .card {
+            background: white; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05); width: 100%;
+        }
+
+        .row {
+            display: flex; align-items: center; padding: 13px 16px;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .row:last-child { border-bottom: none; }
+
+        .row-icon {
+            width: 34px; height: 34px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 12px; flex-shrink: 0;
+        }
+        .row-icon svg { width: 16px; height: 16px; }
+        .row-icon.amber { background: #FEF3C7; color: #D97706; }
+        .row-icon.blue { background: #DBEAFE; color: #2563EB; }
+        .row-icon.green { background: #DCFCE7; color: #16A34A; }
+        .row-icon.purple { background: #F3E8FF; color: #7C3AED; }
+        .row-icon.slate { background: #F1F5F9; color: #475569; }
+        .row-icon.red { background: #FEE2E2; color: #DC2626; }
+
+        .row-body { flex: 1; min-width: 0; }
+        .row-lbl { font-size: 10px; font-weight: 600; color: #94A3B8; margin-bottom: 1px; }
+        .row-val {
+            font-size: 14px; font-weight: 600; color: #1E293B;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+
+        /* ====== Charts ====== */
+        .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+
+        .chart-card {
+            background: white; border-radius: 16px; padding: 14px 10px; text-align: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .chart-title {
+            font-size: 9px; font-weight: 700; color: #94A3B8;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+        }
+
+        .chart-wrap {
+            position: relative; width: 100px; height: 100px; margin: 0 auto 8px;
+        }
+
+        .chart-center {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); text-align: center;
+            pointer-events: none;
+        }
+
+        .chart-pct {
+            font-size: 18px; font-weight: 800; letter-spacing: -1px;
+            line-height: 1; color: #1E293B;
+        }
+
+        .chart-pct-lbl {
+            font-size: 7px; font-weight: 700; color: #94A3B8;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px;
+        }
+
+        .chart-legend { display: flex; justify-content: center; gap: 10px; }
+
+        .leg {
+            display: flex; align-items: center; gap: 3px;
+            font-size: 9px; font-weight: 600; color: #64748B;
+        }
+
+        .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+        /* ====== Breakdown ====== */
+        .bd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+
+        .bd-card {
+            background: white; border-radius: 14px; padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .bd-hdr { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+
+        .bd-icon {
+            width: 26px; height: 26px; border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .bd-icon svg { width: 13px; height: 13px; }
+        .bd-icon.green { background: #DCFCE7; color: #16A34A; }
+        .bd-icon.red { background: #FEE2E2; color: #DC2626; }
+        .bd-icon.gold { background: #FFF7ED; color: #D97706; }
+        .bd-icon.blue { background: #EFF6FF; color: #3B82F6; }
+        .bd-icon.slate { background: #F1F5F9; color: #64748B; }
+
+        .bd-lbl {
+            font-size: 8px; font-weight: 700; color: #94A3B8;
+            text-transform: uppercase; letter-spacing: 0.6px;
+        }
+
+        .bd-val {
+            font-size: 26px; font-weight: 800; letter-spacing: -1px;
+            line-height: 1; color: #1E293B;
+        }
+
+        /* ====== Edit Modal ====== */
+        .modal-bg {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            z-index: 300;
+            display: none; align-items: center; justify-content: center;
+            padding: 24px;
+        }
+        .modal-bg.open { display: flex; }
+
+        .modal {
+            background: white; border-radius: 20px;
+            padding: 24px; width: 100%; max-width: 340px;
+            max-height: 85vh; overflow-y: auto;
+            animation: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        @keyframes pop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal h3 {
+            font-size: 18px; font-weight: 800; margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .field { margin-bottom: 14px; }
+
+        .field label {
+            font-size: 10px; font-weight: 700; color: #94A3B8;
+            text-transform: uppercase; letter-spacing: 1px;
+            display: block; margin-bottom: 5px;
+        }
+
+        .field input, .field select {
+            width: 100%; padding: 11px 14px;
+            border: 2px solid #E2E8F0; border-radius: 12px;
+            font-size: 15px; font-weight: 600; font-family: 'Inter', sans-serif;
+            color: #1E293B; outline: none; transition: border-color 0.2s;
+            background: white;
+        }
+        .field input:focus, .field select:focus { border-color: #D97706; }
+
+        .modal-btns { display: flex; gap: 10px; margin-top: 18px; }
+
+        .modal-btns button {
+            flex: 1; padding: 12px; border: none; border-radius: 12px;
+            font-size: 14px; font-weight: 700; cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .btn-cancel { background: #F1F5F9; color: #64748B; }
+        .btn-save { background: #D97706; color: white; }
+        .btn-save:disabled { opacity: 0.5; }
+
+        /* ====== Year Filter ====== */
+        .sect-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 0 8px;
+        }
+        .sect-header .sect-title { padding: 0; }
+
+        .year-filter {
+            padding: 5px 10px; border: 1.5px solid #E2E8F0; border-radius: 8px;
+            font-size: 11px; font-weight: 600; font-family: 'Inter', sans-serif;
+            color: #475569; background: white; outline: none;
+            cursor: pointer; -webkit-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394A3B8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 24px;
+        }
+        .year-filter:focus { border-color: #D97706; }
+
+        /* ====== Toast ====== */
+        .toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: #1E293B; color: white; padding: 10px 22px;
+            border-radius: 12px; font-size: 13px; font-weight: 600;
+            z-index: 400; opacity: 0; transition: opacity 0.3s;
+            pointer-events: none; white-space: nowrap;
+        }
+        .toast.show { opacity: 1; }
+
+        /* ====== Animations ====== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero { animation: fadeUp 0.35s ease; }
+        .stats { animation: fadeUp 0.4s ease; }
+        .sect { animation: fadeUp 0.45s ease; }
+
+        .spacer { height: 40px; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <button class="back-btn" onclick="history.back()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                Back
+            </button>
+        </div>
+        <div class="topbar-center">Profile</div>
+        <div class="topbar-right">
+            <button class="edit-btn" id="editBtn" type="button" onclick="window.openEditModal && window.openEditModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Edit
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="avatar" id="avatar">??</div>
+        <div class="hero-name" id="heroName">Loading...</div>
+        <div class="hero-role" id="heroRole"></div>
+        <div class="hero-since" id="heroSince"></div>
+        <div class="chips" id="chips"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-val green" id="statP">0</div>
+            <div class="stat-lbl">Present</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val red" id="statA">0</div>
+            <div class="stat-lbl">Absent</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val blue" id="statR">0%</div>
+            <div class="stat-lbl">Rate</div>
+        </div>
+    </div>
+
+    <!-- Details -->
+    <div class="sect">
+        <div class="sect-title">Details</div>
+        <div class="card">
+            <div class="row">
+                <div class="row-icon amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Member ID</div>
+                    <div class="row-val" id="dId">—</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Full Name</div>
+                    <div class="row-val" id="dName">—</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-icon purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Voice Section</div>
+                    <div class="row-val" id="dVoice">—</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-icon green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Status</div>
+                    <div class="row-val" id="dStatus">Active</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personal Info -->
+    <div class="sect">
+        <div class="sect-title">Personal Info</div>
+        <div class="card">
+            <div class="row">
+                <div class="row-icon amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Birthday</div>
+                    <div class="row-val" id="dBirthday">—</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Age</div>
+                    <div class="row-val" id="dAge">—</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-icon purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Gender</div>
+                    <div class="row-val" id="dGender">—</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-icon green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Phone</div>
+                    <div class="row-val" id="dPhone">—</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-icon red">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Address</div>
+                    <div class="row-val" id="dAddress">—</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Choir Info -->
+    <div class="sect">
+        <div class="sect-title">Choir Info</div>
+        <div class="card">
+            <div class="row">
+                <div class="row-icon slate">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 3.5 8 2 3.62 3.46a1.19 1.19 0 00-.87 1.15V19.5a1.2 1.2 0 001.6 1.13L8 19l4 1.5L16 19l4.38 1.63a1.2 1.2 0 001.62-1.13V4.61a1.19 1.19 0 00-.62-1.15z"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Uniform Size</div>
+                    <div class="row-val" id="dUniform">—</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-icon amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div class="row-body">
+                    <div class="row-lbl">Sinking Fund</div>
+                    <div class="row-val" id="dFund">₱0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction History -->
+    <div class="sect">
+        <div class="sect-title">Transaction History</div>
+        <div id="txnContainer" class="card" style="padding:0; overflow:hidden;">
+            <table class="txn-table">
+                <thead>
+                    <tr>
+                        <th style="padding-left:20px;">Date</th>
+                        <th>Type</th>
+                        <th style="text-align:right; padding-right:20px;">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="txnList">
+                    <tr>
+                        <td colspan="3" style="text-align:center; padding:30px; color:#94A3B8; font-size:12px;">No transactions found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <style>
+        .txn-table { width:100%; border-collapse:collapse; font-size:13px; }
+        .txn-table th { background:#F8FAFC; text-align:left; padding:12px 10px; font-size:10px; text-transform:uppercase; color:#64748B; letter-spacing:0.5px; border-bottom:1px solid #F1F5F9; }
+        .txn-table td { padding:14px 10px; border-bottom:1px solid #F1F5F9; color:#1E293B; font-weight:500; }
+        .txn-type { font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase; }
+        .type-payment { background:#DCFCE7; color:#166534; }
+        .type-debt { background:#FEE2E2; color:#991B1B; }
+    </style>
+
+    <!-- Attendance Charts -->
+    <div class="sect">
+        <div class="sect-header">
+            <div class="sect-title">Attendance</div>
+            <select class="year-filter" id="yearFilter">
+                <option value="2026" selected>This Year</option>
+                <option value="all">All Time</option>
+            </select>
+        </div>
+        <div class="charts-grid">
+            <div class="chart-card">
+                <div class="chart-title">Sun. Service</div>
+                <div class="chart-wrap">
+                    <canvas id="svcCanvas"></canvas>
+                    <div class="chart-center">
+                        <div class="chart-pct" id="svcPct">0%</div>
+                        <div class="chart-pct-lbl">Rate</div>
+                    </div>
+                </div>
+                <div class="chart-legend">
+                    <span class="leg"><span class="dot" style="background:#D97706"></span><span id="svcP">0</span> P</span>
+                    <span class="leg"><span class="dot" style="background:#FCA5A5"></span><span id="svcA">0</span> A</span>
+                </div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Sat. Practice</div>
+                <div class="chart-wrap">
+                    <canvas id="prcCanvas"></canvas>
+                    <div class="chart-center">
+                        <div class="chart-pct" id="prcPct">0%</div>
+                        <div class="chart-pct-lbl">Rate</div>
+                    </div>
+                </div>
+                <div class="chart-legend">
+                    <span class="leg"><span class="dot" style="background:#2563EB"></span><span id="prcP">0</span> P</span>
+                    <span class="leg"><span class="dot" style="background:#FCA5A5"></span><span id="prcA">0</span> A</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breakdown -->
+    <div class="sect">
+        <div class="sect-title">Breakdown</div>
+        <div class="bd-grid">
+            <div class="bd-card">
+                <div class="bd-hdr">
+                    <div class="bd-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    <div class="bd-lbl">Svc Present</div>
+                </div>
+                <div class="bd-val" id="bdSP">0</div>
+            </div>
+            <div class="bd-card">
+                <div class="bd-hdr">
+                    <div class="bd-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                    <div class="bd-lbl">Svc Absent</div>
+                </div>
+                <div class="bd-val" id="bdSA">0</div>
+            </div>
+            <div class="bd-card">
+                <div class="bd-hdr">
+                    <div class="bd-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    <div class="bd-lbl">Prc Present</div>
+                </div>
+                <div class="bd-val" id="bdPP">0</div>
+            </div>
+            <div class="bd-card">
+                <div class="bd-hdr">
+                    <div class="bd-icon slate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                    <div class="bd-lbl">Prc Absent</div>
+                </div>
+                <div class="bd-val" id="bdPA">0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- Edit Modal -->
+    <div class="modal-bg" id="modalBg">
+        <div class="modal" id="modalBox">
+            <h3>Edit Profile</h3>
+            <div class="field">
+                <label>Full Name</label>
+                <input type="text" id="inputName" placeholder="Enter name" autocomplete="off">
+            </div>
+            <div class="field">
+                <label>Voice Section</label>
+                <select id="inputVoice">
+                    <option value="">— Select —</option>
+                    <option value="Soprano">Soprano</option>
+                    <option value="Alto">Alto</option>
+                    <option value="Tenor">Tenor</option>
+                    <option value="Bass">Bass</option>
+                    <option value="Choir Director">Choir Director</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Birthday</label>
+                <input type="text" id="inputBirthday" placeholder="e.g. October 21, 2005" autocomplete="off">
+            </div>
+            <div class="field-row">
+                <div class="field">
+                    <label>Gender</label>
+                    <select id="inputGender">
+                        <option value="">— Select —</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Age</label>
+                    <input type="number" id="inputAge" placeholder="Age" autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <label>Phone</label>
+                <input type="tel" id="inputPhone" placeholder="09xx xxx xxxx" autocomplete="off">
+            </div>
+            <div class="field">
+                <label>Address</label>
+                <input type="text" id="inputAddress" placeholder="Enter address" autocomplete="off">
+            </div>
+            <div class="field-row">
+                <div class="field">
+                    <label>Uniform Size</label>
+                    <select id="inputUniform">
+                        <option value="">— Select —</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="2XL">2XL</option>
+                        <option value="3XL">3XL</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Sinking Fund (₱)</label>
+                    <input type="number" id="inputFund" placeholder="0" autocomplete="off">
+                </div>
+            </div>
+            <div class="modal-btns">
+                <button class="btn-cancel" id="btnCancel" type="button">Cancel</button>
+                <button class="btn-save" id="btnSave" type="button">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- Firebase -->
+    <script src="firebase-config.js"></script>
+    <script type="module" src="firebase-service.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <script>
+    (function() {
+        // ====== DOM helpers ======
+        function $(id) { return document.getElementById(id); }
+
+        function toast(msg) {
+            var t = $('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(function() { t.classList.remove('show'); }, 2500);
+        }
+
+        function initials(name) {
+            return (name || '').split(' ').filter(function(n){return n;}).map(function(n){return n[0];}).join('').slice(0,2).toUpperCase() || '??';
+        }
+
+        // ====== State ======
+        var params = new URLSearchParams(window.location.search);
+        var memberId = params.get('id');
+        var memberName = params.get('name');
+        var db = null;
+        var currentMember = null;
+        var membersList = [];
+        var svcChart = null;
+        var prcChart = null;
+        var allRecords = [];
+
+        // ====== Firebase init (Wait for Service & Auth) ======
+        async function initFirebase() {
+            let retryCount = 0;
+            // 1. Wait for FirebaseService to be attached to window
+            while (!window.FirebaseService && retryCount < 50) {
+                await new Promise(r => setTimeout(r, 100));
+                retryCount++;
+            }
+
+            if (!window.FirebaseService) {
+                console.error("FirebaseService failed to load.");
+                toast('Error: Service Unavailable');
+                return;
+            }
+
+            console.log("FirebaseService detected. Waiting for Auth...");
+
+            // 2. Wait for Auth to resolve (logged in or not)
+            window.FirebaseService.onAuthChange(function(user) {
+                if (user) {
+                    console.log("Auth ready:", user.email);
+                    load();
+                } else {
+                    console.warn("User not logged in. Data may not load.");
+                    // Still try to load (it might show cached data or fail gracefully)
+                    load();
+                }
+            });
+        }
+
+        // ====== MODAL SETUP (always runs) ======
+        var modalBg = $('modalBg');
+        var inputName = $('inputName');
+        var inputVoice = $('inputVoice');
+        var btnSave = $('btnSave');
+
+        window.openEditModal = function() {
+            var m = currentMember || {};
+            inputName.value = m.name || $('dName').textContent || '';
+            inputVoice.value = m.voice_type || '';
+            $('inputBirthday').value = m.birthday || '';
+            $('inputGender').value = m.gender || '';
+            $('inputAge').value = m.age != null ? m.age : '';
+            $('inputPhone').value = m.cellphone_number || '';
+            $('inputAddress').value = m.address || '';
+            $('inputUniform').value = m.uniform_size || '';
+            $('inputFund').value = m.sinking_fund_balance || 0;
+            modalBg.classList.add('open');
+            setTimeout(function() { inputName.focus(); }, 200);
+        };
+
+        // Also set via onclick property
+        $('editBtn').onclick = window.openEditModal;
+
+        $('btnCancel').onclick = function() { modalBg.classList.remove('open'); };
+
+        modalBg.onclick = function(e) {
+            if (e.target === modalBg) modalBg.classList.remove('open');
+        };
+
+        btnSave.onclick = async function() {
+            var newName = inputName.value.trim();
+            var newVoice = inputVoice.value;
+            if (!newName) { inputName.focus(); return; }
+            if (!window.FirebaseService) { toast('Database not ready'); return; }
+
+            btnSave.disabled = true;
+            btnSave.textContent = 'Saving…';
+
+            try {
+                var idx = membersList.findIndex(function(m) { return m.id === memberId; });
+                if (idx === -1) throw new Error('Member not found (id: ' + memberId + ')');
+
+                // Read all fields
+                var newBirthday = $('inputBirthday').value.trim();
+                var newGender = $('inputGender').value;
+                var newAge = $('inputAge').value ? parseInt($('inputAge').value) : '';
+                var newPhone = $('inputPhone').value.trim();
+                var newAddress = $('inputAddress').value.trim();
+                var newUniform = $('inputUniform').value;
+                var newFund = parseFloat($('inputFund').value) || 0;
+
+                // Update member object (preserving other properties like labels for attendance)
+                var updatedMember = Object.assign({}, membersList[idx], {
+                    name: newName,
+                    voice_type: newVoice || 'Unassigned',
+                    birthday: newBirthday,
+                    gender: newGender,
+                    age: newAge,
+                    cellphone_number: newPhone,
+                    address: newAddress,
+                    uniform_size: newUniform,
+                    sinking_fund_balance: newFund
+                });
+
+                // Update in local list
+                membersList[idx] = updatedMember;
+
+                // Clean: remove undefined values that Firestore rejects
+                var cleanList = membersList.map(function(m) {
+                    var obj = Object.assign({}, m);
+                    Object.keys(obj).forEach(function(key) {
+                        if (obj[key] === undefined || obj[key] === null) delete obj[key];
+                    });
+                    return obj;
+                });
+
+                // Use FirebaseService for saving to the correct collection
+                await window.FirebaseService.saveData('app_data', 'members_list', { members: cleanList });
+
+                currentMember = updatedMember;
+
+                // Update UI — Details
+                $('heroName').textContent = newName;
+                $('dName').textContent = newName;
+                $('avatar').textContent = initials(newName);
+                $('dVoice').textContent = newVoice || '—';
+
+                if (!currentMember.isDirector) {
+                    $('heroRole').textContent = newVoice ? newVoice + ' Section' : 'Member';
+                }
+
+                // Update UI — Personal Info
+                $('dBirthday').textContent = newBirthday || '—';
+                $('dAge').textContent = newAge ? newAge + ' years old' : '—';
+                $('dGender').textContent = newGender || '—';
+                $('dPhone').textContent = newPhone || '—';
+                $('dAddress').textContent = newAddress || '—';
+
+                // Update UI — Choir Info
+                $('dUniform').textContent = newUniform || '—';
+                $('dFund').textContent = '₱' + newFund;
+
+                buildChips(currentMember);
+                modalBg.classList.remove('open');
+                toast('✓ Profile saved!');
+            } catch(err) {
+                console.error('Save error:', err);
+                toast('Error: ' + (err.message || err));
+            } finally {
+                btnSave.disabled = false;
+                btnSave.textContent = 'Save';
+            }
+        };
+
+        // ====== Build Chips ======
+        function buildChips(m) {
+            var h = '';
+            if (m.voice_type) {
+                var cls = m.voice_type === 'Choir Director' ? 'chip-director' : 'chip-voice';
+                h += '<span class="chip ' + cls + '">' + m.voice_type + '</span>';
+            }
+            if (m.isDirector && m.voice_type !== 'Choir Director') {
+                h += '<span class="chip chip-director">Director</span>';
+            }
+            if (m.isLeader) h += '<span class="chip chip-leader">Leader</span>';
+            if (m.isTreasurer) h += '<span class="chip chip-treasurer">Treasurer</span>';
+            if (m.at_cebu) h += '<span class="chip chip-cebu">At Cebu</span>';
+            if (m.mostly_absent) h += '<span class="chip chip-absent">Mostly Absent</span>';
+            $('chips').innerHTML = h;
+        }
+
+        // ====== Donut ======
+        function donut(canvasId, present, absent, color1, color2, key) {
+            if (typeof Chart === 'undefined') return;
+            var c = $(canvasId);
+            if (key === 'svc' && svcChart) svcChart.destroy();
+            if (key === 'prc' && prcChart) prcChart.destroy();
+
+            var has = (present + absent) > 0;
+            var chart = new Chart(c, {
+                type: 'doughnut',
+                data: { datasets: [{ data: has ? [present, absent] : [1], backgroundColor: has ? [color1, color2] : ['#E2E8F0'], borderWidth: 0, borderRadius: has ? 5 : 0 }] },
+                options: { cutout: '72%', responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false }, tooltip: { enabled: false } }, animation: { duration: 700 } }
+            });
+            if (key === 'svc') svcChart = chart;
+            if (key === 'prc') prcChart = chart;
+        }
+
+        // ====== Calculate & render attendance stats ======
+        function renderAttendance(yearFilter) {
+            var sp=0, sa=0, pp=0, pa=0;
+
+            allRecords.forEach(function(rec) {
+                // Year filter
+                if (yearFilter !== 'all' && rec.year !== parseInt(yearFilter)) return;
+
+                if (rec.isPresent) {
+                    if (rec.isSunday) sp++; else pp++;
+                } else if (!rec.wasExempt && rec.hadAttendees) {
+                    if (rec.isSunday) sa++; else pa++;
+                }
+            });
+
+            // Breakdown
+            $('bdSP').textContent = sp;
+            $('bdSA').textContent = sa;
+            $('bdPP').textContent = pp;
+            $('bdPA').textContent = pa;
+
+            // Stats
+            var tp = sp+pp, ta = sa+pa, tot = tp+ta;
+            $('statP').textContent = tp;
+            $('statA').textContent = ta;
+            $('statR').textContent = (tot>0 ? Math.round((tp/tot)*100) : 0) + '%';
+
+            // Charts
+            $('svcP').textContent = sp; $('svcA').textContent = sa;
+            $('prcP').textContent = pp; $('prcA').textContent = pa;
+            var sr = (sp+sa)>0 ? Math.round((sp/(sp+sa))*100) : 0;
+            var pr = (pp+pa)>0 ? Math.round((pp/(pp+pa))*100) : 0;
+            $('svcPct').textContent = sr + '%';
+            $('prcPct').textContent = pr + '%';
+
+            donut('svcCanvas', sp, sa, '#D97706', '#FCA5A5', 'svc');
+            donut('prcCanvas', pp, pa, '#2563EB', '#FCA5A5', 'prc');
+        }
+
+        // ====== Year filter change ======
+        $('yearFilter').onchange = function() {
+            renderAttendance(this.value);
+        };
+
+        // ====== Load ======
+        async function load() {
+            if (!memberId) { 
+                $('heroName').textContent = 'No member selected'; 
+                console.warn("No memberId in URL params");
+                return; 
+            }
+
+            // Initial UI state from params
+            $('avatar').textContent = initials(memberName);
+            $('heroName').textContent = memberName || 'Unknown';
+            $('dName').textContent = memberName || 'Unknown';
+            $('dId').textContent = memberId;
+
+            if (!window.FirebaseService) { 
+                console.error('FirebaseService not available during load()'); 
+                return; 
+            }
+
+            try {
+                console.log("Loading member data for:", memberId);
+                // Use FirebaseService to fetch from the correct collection
+                var data = await window.FirebaseService.fetchData('app_data', 'members_list');
+                var rawList = (data || {}).members || [];
+                
+                console.log("Raw members fetched:", rawList.length);
+
+                // Generate IDs and handle roles (Consistent with app.js)
+                membersList = rawList.map(function(m, index) {
+                    var id = m.id || 'ASC-' + String(index + 1).padStart(3, '0');
+                    
+                    // Initial role detection from name (fallback)
+                    var name = m.name || "";
+                    var isLeader = name.includes(" - Leader") || !!m.isLeader;
+                    var isTreasurer = name.includes(" - Treasurer") || !!m.isTreasurer;
+                    var isDirector = name.includes(" - Choir Director") || !!m.isDirector;
+                    
+                    var cleanName = name.replace(" - Leader", "").replace(" - Treasurer", "").replace(" - Choir Director", "").trim();
+                    if (cleanName.toLowerCase().includes('panchonilo')) {
+                        isDirector = true;
+                        m.voice_type = "Choir Director";
+                    }
+
+                    return Object.assign({}, m, {
+                        id: id,
+                        name: cleanName,
+                        isLeader: isLeader,
+                        isTreasurer: isTreasurer,
+                        isDirector: isDirector
+                    });
+                });
+
+                currentMember = membersList.find(function(m){ return m.id === memberId; });
+
+                if (currentMember) {
+                    console.log("Current member found:", currentMember.name);
+                    var m = currentMember;
+                    $('heroName').textContent = m.name;
+                    $('dName').textContent = m.name;
+                    $('avatar').textContent = initials(m.name);
+
+                    var role = m.voice_type ? (m.voice_type === 'Unassigned' ? 'Member' : m.voice_type + ' Section') : 'Member';
+                    if (m.isDirector) {
+                        role = m.voice_type === 'Choir Director' ? '' : 'Choir Master Director';
+                    } else if (m.isLeader) {
+                        role = (m.voice_type || '') + ' Leader';
+                    }
+                    $('heroRole').textContent = role;
+                    $('heroSince').textContent = 'Member Since 2023';
+                    $('dVoice').textContent = m.voice_type || '—';
+
+                    var status = 'Active';
+                    if (m.at_cebu) status = 'At Cebu';
+                    if (m.mostly_absent) status = 'Mostly Absent';
+                    if (m.isDirector) status = 'Choir Director';
+                    $('dStatus').textContent = status;
+
+                    buildChips(m);
+
+                    // Personal Info
+                    $('dBirthday').textContent = m.birthday || '—';
+                    $('dAge').textContent = m.age != null ? m.age + ' years old' : '—';
+                    $('dGender').textContent = m.gender || '—';
+                    $('dPhone').textContent = m.cellphone_number || '—';
+                    $('dAddress').textContent = m.address || '—';
+                    $('dUniform').textContent = m.uniform_size || '—';
+                    $('dFund').textContent = '₱' + (m.sinking_fund_balance || 0);
+                } else {
+                    console.warn("Member with ID " + memberId + " not found in the list.");
+                }
+
+                // Load & cache attendance records via FirebaseService
+                console.log("Fetching attendance records...");
+                var cloudRecords = await window.FirebaseService.fetchAllDocs('attendance_records');
+                allRecords = [];
+
+                cloudRecords.forEach(function(r) {
+                    var ds = r.date || r.id;
+                    var p = ds.split('-').map(Number);
+                    if (p.length < 3) return;
+                    
+                    var ids = r.presentIds || [];
+                    var members = r.members || [];
+                    var exempt = members.find(function(rm){return rm.id===memberId;});
+                    var wasCebu = exempt && exempt.labels && (exempt.labels.at_cebu || exempt.labels.at_cebu === true);
+
+                    allRecords.push({
+                        year: p[0],
+                        isSunday: new Date(p[0], p[1]-1, p[2]).getDay() === 0,
+                        isPresent: ids.includes(memberId),
+                        wasExempt: !!wasCebu,
+                        hadAttendees: ids.length > 0
+                    });
+                });
+
+                console.log("Processed " + allRecords.length + " attendance records.");
+                renderAttendance('all');
+
+                // Load transactions
+                try {
+                    console.log("Fetching transactions for:", memberId);
+                    var txns = await window.FirebaseService.fetchAllDocs('sinking_fund_transactions');
+                    var memberTxns = txns.filter(function(t) { return t.memberId === memberId; });
+                    renderTransactions(memberTxns);
+                } catch(err) {
+                    console.warn("Failed to fetch transactions:", err);
+                }
+            } catch(err) {
+                console.error('Load error:', err);
+                toast('Error loading profile');
+            }
+        }
+
+        function renderTransactions(txns) {
+            var h = '';
+            if (!txns || txns.length === 0) {
+                h = '<tr><td colspan="3" style="text-align:center; padding:30px; color:#94A3B8; font-size:12px;">No transactions found</td></tr>';
+            } else {
+                // Sort by date descending
+                txns.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+                txns.forEach(function(t) {
+                    var typeCls = t.type === 'Payment' ? 'type-payment' : 'type-debt';
+                    h += '<tr>';
+                    h += '<td style="padding-left:20px;">' + (t.date || '—') + '</td>';
+                    h += '<td><span class="txn-type ' + typeCls + '">' + (t.type || 'Payment') + '</span></td>';
+                    h += '<td style="text-align:right; padding-right:20px;">₱' + (t.amount || 0) + '</td>';
+                    h += '</tr>';
+                });
+            }
+            $('txnList').innerHTML = h;
+        }
+
+        initFirebase();
+    })();
+    </script>
+</body>
+</html>
