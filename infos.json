@@ -5,23 +5,25 @@
     "birthday": "October 21, 2005",
     "age": 20,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 260,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09657985036",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Bungtod, Bogo"
   },
   {
     "name": "Alyssa Biernes",
     "voice_type": "Soprano",
-    "birthday": "October 27",
+    "birthday": "October 27,",
     "age": null,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 500,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09352395198",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Polambato, Bogo"
   },
   {
     "name": "Mary Rochelle Meñoria",
@@ -29,23 +31,25 @@
     "birthday": "November 21, 2008",
     "age": 17,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09540638940",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Lapaz, Bogo"
   },
   {
     "name": "Rachel L. Meñoria",
     "voice_type": "Soprano",
-    "birthday": "September 05, 2001",
+    "birthday": "September 5, 2001",
     "age": 24,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 448,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Lapaz, Bogo"
   },
   {
     "name": "Shemeiah Bliss Teves",
@@ -53,9 +57,9 @@
     "birthday": "",
     "age": null,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09658635722",
     "attendance_presents": 0,
     "attendance_absents": 0
   },
@@ -65,9 +69,9 @@
     "birthday": "March 18, 2008",
     "age": 17,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 490,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09536756350",
     "attendance_presents": 0,
     "attendance_absents": 0
   },
@@ -77,23 +81,25 @@
     "birthday": "March 19, 2006",
     "age": 19,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09619641989",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Lapaz, Bogo"
   },
   {
     "name": "Annmarrie Abao",
     "voice_type": "Soprano",
-    "birthday": "",
-    "age": null,
+    "birthday": "May 15, 2007",
+    "age": 18,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 332,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09623101202",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Gairan, Bogo City, Cebu"
   },
   {
     "name": "Maria Isabella Catarina",
@@ -103,21 +109,22 @@
     "gender": "Female",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09952416317",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Dakit, Bogo City, Cebu"
   },
   {
     "name": "Norwejean Arnado",
     "voice_type": "Soprano",
-    "birthday": "October 11",
+    "birthday": "October 11,",
     "age": null,
     "gender": "Female",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -129,25 +136,27 @@
     "birthday": "April 28, 2008",
     "age": 17,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09623847855",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Lourdes, Bogo City"
   },
   {
     "name": "Frances Marie Bedrijo",
     "voice_type": "Soprano",
-    "birthday": "",
+    "birthday": "December 16,",
     "age": null,
     "gender": "Female",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09917160575",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Pamintao Village, Cogon"
   },
   {
     "name": "Therese Bedrijo",
@@ -157,11 +166,12 @@
     "gender": "Female",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Pamintao Village, Cogon"
   },
   {
     "name": "Mariafaith Castillo",
@@ -170,7 +180,7 @@
     "age": null,
     "gender": "Female",
     "at_cebu": true,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -182,7 +192,7 @@
     "birthday": "August 23, 2006",
     "age": 19,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 462,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -191,16 +201,17 @@
   {
     "name": "Jahzel Piañar",
     "voice_type": "Soprano",
-    "birthday": "July 5",
-    "age": null,
+    "birthday": "July 25, 2003",
+    "age": 22,
     "gender": "Female",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09243706855",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Bungtod, Bogo City, Cebu"
   },
   {
     "name": "Ica Eunice Lepasana",
@@ -208,11 +219,12 @@
     "birthday": "June 9, 2009",
     "age": 16,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 430,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09623683572",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Dakit, Bogo City, Cebu"
   },
   {
     "name": "Ainashena Cantay",
@@ -222,7 +234,7 @@
     "gender": "Female",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -236,11 +248,12 @@
     "gender": "Female",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "L",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "tangke, bogo city"
   },
   {
     "name": "Irish Mae Amores",
@@ -248,7 +261,7 @@
     "birthday": "May 9, 2005",
     "age": 20,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "L",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -257,22 +270,23 @@
   {
     "name": "Mary Grace Opura",
     "voice_type": "Soprano",
-    "birthday": "",
-    "age": null,
+    "birthday": "September 9,",
+    "age": 13,
     "gender": "Female",
-    "sinking_fund_balance": 0,
-    "uniform_size": "S",
-    "cellphone_number": "",
+    "sinking_fund_balance": 480,
+    "uniform_size": "M",
+    "cellphone_number": "09289455071",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "tangke, bogo city"
   },
   {
     "name": "Maychille Senining",
     "voice_type": "Soprano",
-    "birthday": "",
-    "age": null,
+    "birthday": "May 31, 2009",
+    "age": 16,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 450,
     "uniform_size": "M",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -281,39 +295,42 @@
   {
     "name": "Beverlyn Amores",
     "voice_type": "Soprano",
-    "birthday": "October 28",
-    "age": null,
+    "birthday": "October 28,",
+    "age": 18,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09218493074",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Cayang Bogo"
   },
   {
     "name": "Marie Ancel Eugene Rupal",
     "voice_type": "Soprano",
-    "birthday": "November 9",
+    "birthday": "November 9,",
     "age": null,
     "gender": "Female",
     "mostly_absent": true,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Dakit, Bogo City"
   },
   {
     "name": "Bryce Peñalosa",
     "voice_type": "Soprano",
-    "birthday": "",
-    "age": null,
+    "birthday": "October 22, 2005",
+    "age": 20,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09103557938",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Gairan, Bogo City"
   },
   {
     "name": "Kyla Jane Ancero",
@@ -321,7 +338,7 @@
     "birthday": "",
     "age": null,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 382,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -330,14 +347,15 @@
   {
     "name": "Mary Joy Meñoria",
     "voice_type": "Soprano",
-    "birthday": "",
-    "age": null,
+    "birthday": "November 20,",
+    "age": 12,
     "gender": "Female",
     "sinking_fund_balance": 0,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09096291955",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "La Paz, Bogo"
   },
   {
     "name": "Lani Marie L. Cañete",
@@ -345,11 +363,12 @@
     "birthday": "August 27, 2010",
     "age": 15,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 312,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09691822742",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Cogon, Bogo City, Cebu"
   },
   {
     "name": "Daryl Joy Olidiana - Leader",
@@ -357,35 +376,38 @@
     "birthday": "December 27, 2006",
     "age": 19,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09641408949",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Taytayan, Bogo"
   },
   {
     "name": "Maryknohl L. Balunan - Treasurer",
     "voice_type": "Alto",
-    "birthday": "October 08, 2007",
+    "birthday": "October 8, 2007",
     "age": 18,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 462,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Sambag, Bogo"
   },
   {
     "name": "Kimberly Ann Tepait",
     "voice_type": "Alto",
-    "birthday": "January 29, 2011",
-    "age": 14,
+    "birthday": "January 29, 2026",
+    "age": 15,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 270,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09273518506",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Pamintao, Cogon"
   },
   {
     "name": "Althea Claire Yhapon",
@@ -393,11 +415,12 @@
     "birthday": "November 7, 2003",
     "age": 22,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09918361636",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Curva, Libertad, Bogo"
   },
   {
     "name": "Kiara Antonette M. Toñacao",
@@ -405,11 +428,12 @@
     "birthday": "June 13, 2010",
     "age": 15,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09551990541",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "San Vicente Bogo"
   },
   {
     "name": "April Jane Tepait",
@@ -417,11 +441,12 @@
     "birthday": "April 1, 2004",
     "age": 21,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 480,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09913908899",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Tupas, Bogo City, Cebu"
   },
   {
     "name": "Athena Carla Cuizon",
@@ -429,11 +454,12 @@
     "birthday": "December 26, 2010",
     "age": 15,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 330,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09942667067",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Purok 5, Gairan, Bogo"
   },
   {
     "name": "Zyrae Faith Y. Ramil",
@@ -441,11 +467,12 @@
     "birthday": "January 24, 2007",
     "age": 18,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 250,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09679807676",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Bungtod, Bogo"
   },
   {
     "name": "Claire Denise Alburo",
@@ -453,35 +480,38 @@
     "birthday": "October 13, 2009",
     "age": 16,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 462,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09355275814",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Gairan, Bogo"
   },
   {
     "name": "Janica Marie L. Presillas",
     "voice_type": "Alto",
-    "birthday": "January 03, 2007",
+    "birthday": "January 3, 2007",
     "age": 19,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09295733841",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Pandan, Bogo"
   },
   {
     "name": "Jane Aragon",
     "voice_type": "Alto",
-    "birthday": "December 3",
+    "birthday": "December 3, 2003",
     "age": null,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09675389512",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Dakit, Bogo"
   },
   {
     "name": "Florimae L. Ypil",
@@ -489,20 +519,20 @@
     "birthday": "May 26, 2003",
     "age": 22,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09161221938",
     "attendance_presents": 0,
     "attendance_absents": 0
   },
   {
     "name": "Mary Flor Ortega",
     "voice_type": "Alto",
-    "birthday": "May 05, 2007",
+    "birthday": "May 5, 2007",
     "age": 18,
     "gender": "Female",
     "mostly_absent": true,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -515,11 +545,12 @@
     "age": null,
     "gender": "Female",
     "at_cebu": true,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Pamintao, Cogon"
   },
   {
     "name": "Princess Rhonette Dela Cruz",
@@ -527,11 +558,12 @@
     "birthday": "March 28, 2011",
     "age": 14,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "XL",
-    "cellphone_number": "",
+    "cellphone_number": "09977787561",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Nailon, Bogo"
   },
   {
     "name": "Cyra Mae Tudtud",
@@ -539,11 +571,12 @@
     "birthday": "November 10, 1995",
     "age": 30,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 220,
     "uniform_size": "XL",
-    "cellphone_number": "",
+    "cellphone_number": "09264335474",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Banban, Bogo City"
   },
   {
     "name": "Clarice Pedroza",
@@ -551,11 +584,12 @@
     "birthday": "",
     "age": null,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "2XL",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "LPC, Bogo"
   },
   {
     "name": "Zakiya Zytka Codera",
@@ -563,23 +597,25 @@
     "birthday": "",
     "age": null,
     "gender": "Female",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "San Vicente, Bogo"
   },
   {
     "name": "Mariannie Bolambao",
     "voice_type": "Alto",
-    "birthday": "",
-    "age": null,
+    "birthday": "July 9 , 2010",
+    "age": 15,
     "gender": "Female",
-    "sinking_fund_balance": 0,
-    "uniform_size": "M",
-    "cellphone_number": "",
+    "sinking_fund_balance": 500,
+    "uniform_size": "S",
+    "cellphone_number": "09502119190",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Dakit,Bogo City, Cebu"
   },
   {
     "name": "Danilo Ferolino Jr. - Leader",
@@ -587,11 +623,12 @@
     "birthday": "April 9, 2008",
     "age": 17,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 300,
     "uniform_size": "XL",
-    "cellphone_number": "",
+    "cellphone_number": "09368447225",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Polambato, Bogo"
   },
   {
     "name": "Stephen Andry Lumungsod",
@@ -599,7 +636,7 @@
     "birthday": "August 1, 2006",
     "age": 20,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 480,
     "uniform_size": "L",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -611,11 +648,12 @@
     "birthday": "October 21, 2008",
     "age": 17,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09674914379",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Cayang, Bogo"
   },
   {
     "name": "Ralph Dion Lazarte",
@@ -623,21 +661,21 @@
     "birthday": "",
     "age": null,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09536831940",
     "attendance_presents": 0,
     "attendance_absents": 0
   },
   {
     "name": "Miljun Lepon",
     "voice_type": "Bass",
-    "birthday": "May 2006",
+    "birthday": "May 1, 2006",
     "age": 19,
     "gender": "Male",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -649,11 +687,12 @@
     "birthday": "August 2, 2004",
     "age": 21,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 292,
     "uniform_size": "L",
-    "cellphone_number": "",
+    "cellphone_number": "09762591265",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Dakit, Bogo City, Cebu"
   },
   {
     "name": "Rod Joven Y. Castillo",
@@ -661,11 +700,12 @@
     "birthday": "June 3, 2005",
     "age": 20,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 408,
     "uniform_size": "XL",
-    "cellphone_number": "",
+    "cellphone_number": "09683828285",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "San Vicente, Bogo"
   },
   {
     "name": "France Jay Toledo",
@@ -673,11 +713,12 @@
     "birthday": "October 4",
     "age": null,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "L",
-    "cellphone_number": "",
+    "cellphone_number": "09917001121",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Sambag, Flores Compound, Bogo"
   },
   {
     "name": "Matthew I. Mandado",
@@ -685,11 +726,12 @@
     "birthday": "May 11, 2007",
     "age": 18,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 462,
     "uniform_size": "XL",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Maharat, Bogo"
   },
   {
     "name": "Justine Menil Lejesta",
@@ -697,43 +739,46 @@
     "birthday": "April 21, 2007",
     "age": 18,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 332,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09398506998",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Lapaz, Bogo"
   },
   {
     "name": "Sean Raphael Pedroza",
     "voice_type": "Bass",
-    "birthday": "July 12",
-    "age": null,
+    "birthday": "July 12, 2006",
+    "age": 19,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "M",
-    "cellphone_number": "",
+    "cellphone_number": "09956703417",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "LPC,  Bogo"
   },
   {
     "name": "Pocholo Codera",
     "voice_type": "Bass",
-    "birthday": "February 9",
+    "birthday": "February 9,",
     "age": null,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "L",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "San Vicente, Bogo"
   },
   {
     "name": "Jasper Cabañero",
     "voice_type": "Bass",
-    "birthday": "February 22",
+    "birthday": "February 22,",
     "age": null,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "L",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -755,14 +800,15 @@
   {
     "name": "Rodil Mibato - Leader/President",
     "voice_type": "Tenor",
-    "birthday": "November 13",
+    "birthday": "November 13,",
     "age": null,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "XL",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Cayang, Bogo"
   },
   {
     "name": "Arñiel A. Cantay",
@@ -772,7 +818,7 @@
     "gender": "Male",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "XL",
     "cellphone_number": "",
     "attendance_presents": 0,
@@ -781,16 +827,17 @@
   {
     "name": "Franchys Kheno Cantay",
     "voice_type": "Tenor",
-    "birthday": "",
+    "birthday": "September 13",
     "age": null,
     "gender": "Male",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "XL",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Guadalupe, bogo"
   },
   {
     "name": "Jean Paul N. Alburo",
@@ -799,11 +846,12 @@
     "age": 18,
     "gender": "Male",
     "mostly_absent": true,
-    "sinking_fund_balance": 0,
-    "uniform_size": "XL",
-    "cellphone_number": "",
+    "sinking_fund_balance": 520,
+    "uniform_size": "L",
+    "cellphone_number": "09616292050",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Maharat, Bogo"
   },
   {
     "name": "Jean Paul N. Alburo",
@@ -824,11 +872,12 @@
     "birthday": "September 28, 2008",
     "age": 17,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 240,
     "uniform_size": "XL",
-    "cellphone_number": "",
+    "cellphone_number": "09532356182",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Gairan, Bogo"
   },
   {
     "name": "Vincent Paul Ypil",
@@ -836,11 +885,12 @@
     "birthday": "December 28, 2001",
     "age": 24,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 300,
     "uniform_size": "XL",
-    "cellphone_number": "",
+    "cellphone_number": "09754188996",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Bungtod, Bogo"
   },
   {
     "name": "Marthy Lobitaña",
@@ -848,48 +898,65 @@
     "birthday": "November 27, 2008",
     "age": 17,
     "gender": "Male",
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 480,
     "uniform_size": "S",
-    "cellphone_number": "",
+    "cellphone_number": "09916534037",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Bungtod, Bogo"
   },
   {
     "name": "John Raymund Goco",
     "voice_type": "Tenor",
-    "birthday": "September 21",
+    "birthday": "September 21,",
     "age": null,
     "gender": "Male",
     "at_cebu": true,
     "exemptions": 0,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 470,
     "uniform_size": "S",
     "cellphone_number": "",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Solidhomes, Taytayan"
   },
   {
     "name": "Franz Alexander Rupal",
     "voice_type": "Tenor",
-    "birthday": "November 7",
+    "birthday": "November 7,",
     "age": null,
     "gender": "Male",
     "mostly_absent": true,
-    "sinking_fund_balance": 0,
+    "sinking_fund_balance": 520,
     "uniform_size": "L",
-    "cellphone_number": "",
+    "cellphone_number": "09454984840",
     "attendance_presents": 0,
-    "attendance_absents": 0
+    "attendance_absents": 0,
+    "address": "Dakit, Bogo City"
   },
   {
     "name": "Panchonilo Pedroza - Choir Master Director",
     "voice_type": "",
-    "birthday": "October 16",
-    "age": null,
+    "birthday": "October 16, 1957",
+    "age": 69,
     "gender": "Male",
     "sinking_fund_balance": 0,
     "uniform_size": "3XL",
-    "cellphone_number": "",
+    "cellphone_number": "09651545298",
+    "attendance_presents": 0,
+    "attendance_absents": 0,
+    "address": "Alphine Subdivision, Dakit, Bogo City, Cebu"
+  },
+  {
+    "name": "Syrus Lobitana",
+    "voice_type": "Tenor",
+    "birthday": "September 13, 2001",
+    "age": 24,
+    "gender": "Male",
+    "sinking_fund_balance": 402,
+    "uniform_size": "L",
+    "cellphone_number": "09918361806",
+    "address": "Pelez st. Bogo City",
     "attendance_presents": 0,
     "attendance_absents": 0
   }

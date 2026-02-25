@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Force Sync All Profiles</title>
+    <script src="firebase-config.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const app = initializeApp(window.firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.getElementById('status').innerText = "Waiting for Auth...";
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                document.getElementById('status').innerText = "Auth Ready. Fetching infos.json...";
+                try {
+                    const response = await fetch('infos.json');
+                    const json = await response.json();
+                    
+                    document.getElementById('status').innerText = "Updating Firestore (app_data/members_list)...";
+                    await setDoc(doc(db, 'app_data', 'members_list'), { 
+                        members: json,
+                        updatedAt: new Date().toISOString()
+                    });
+                    
+                    document.getElementById('status').innerText = "SUCCESS! All profiles synced to Firestore.";
+                    document.getElementById('status').style.color = "green";
+                } catch (err) {
+                    document.getElementById('status').innerText = "ERROR: " + err.message;
+                    document.getElementById('status').style.color = "red";
+                }
+            } else {
+                document.getElementById('status').innerText = "Please log in on the main app first.";
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Force Sync All Profiles</h1>
+    <p>This will push all data from <strong>infos.json</strong> to Firestore.</p>
+    <div id="status" style="font-weight: bold; margin-top: 20px;">Initializing...</div>
+</body>
+</html>

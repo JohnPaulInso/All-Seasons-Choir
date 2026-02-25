@@ -175,6 +175,21 @@
             overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
 
+        .row-action {
+            width: 34px; height: 34px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+            margin-left: 8px; flex-shrink: 0;
+            text-decoration: none; -webkit-tap-highlight-color: transparent;
+        }
+        .row-action.green { color: #16A34A; }
+        .row-action.green:active { background: #DCFCE7; }
+        .row-action.red { color: #DC2626; }
+        .row-action.red:active { background: #FEE2E2; }
+        
+        .row-action:active { transform: scale(0.9); }
+        .row-action svg { width: 18px; height: 18px; }
+
         /* ====== Charts ====== */
         .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
 
@@ -318,16 +333,20 @@
         }
         .sect-header .sect-title { padding: 0; }
 
-        .year-filter {
-            padding: 5px 10px; border: 1.5px solid #E2E8F0; border-radius: 8px;
-            font-size: 11px; font-weight: 600; font-family: 'Inter', sans-serif;
-            color: #475569; background: white; outline: none;
-            cursor: pointer; -webkit-appearance: none; appearance: none;
+        .year-filter { background:white; border:1px solid #E2E8F0; padding:6px 12px; border-radius:10px; font-size:12px; font-weight:600; color:#475569; outline:none; transition:all 0.2s; cursor:pointer;
+            -webkit-appearance: none; appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394A3B8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 8px center;
             padding-right: 24px;
         }
+        .year-filter:hover { border-color:#CBD5E1; background:#F8FAFC; }
+
+        .refresh-btn { background:white; border:1px solid #E2E8F0; padding:6px; border-radius:10px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s; color:#64748B; }
+        .refresh-btn:hover { background:#F8FAFC; color:#2563EB; border-color:#2563EB; transform:rotate(90deg); }
+        .refresh-btn svg { width:14px; height:14px; }
+        .refresh-btn.spinning { animation: spin 0.8s linear infinite; }
+        @keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
         .year-filter:focus { border-color: #D97706; }
 
         /* ====== Toast ====== */
@@ -381,7 +400,7 @@
     </div>
 
     <!-- Stats -->
-    <div class="stats">
+    <div class="stats-row">
         <div class="stat-card">
             <div class="stat-val green" id="statP">0</div>
             <div class="stat-lbl">Present</div>
@@ -394,6 +413,11 @@
             <div class="stat-val blue" id="statR">0%</div>
             <div class="stat-lbl">Rate</div>
         </div>
+    </div>
+
+    <!-- Hidden Debug Overlay (Visible if stats are zero) -->
+    <div id="debugBar" style="background:#F1F5F9; color:#475569; padding:8px 15px; font-size:10px; font-family:monospace; margin-top:10px; border-radius:8px; display:none; border:1px dashed #CBD5E1;">
+        ID: <span id="debugId">?</span> | Name: <span id="debugName">?</span> | Raw: <span id="debugRaw">0</span> | Matches: <span id="debugMatch">0</span>
     </div>
 
     <!-- Details -->
@@ -478,6 +502,9 @@
                     <div class="row-lbl">Phone</div>
                     <div class="row-val" id="dPhone">—</div>
                 </div>
+                <a id="linkPhone" class="row-action green" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </a>
             </div>
             <div class="row">
                 <div class="row-icon red">
@@ -487,6 +514,9 @@
                     <div class="row-lbl">Address</div>
                     <div class="row-val" id="dAddress">—</div>
                 </div>
+                <a id="linkAddress" class="row-action red" style="display:none;" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </a>
             </div>
         </div>
     </div>
@@ -509,7 +539,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
                 <div class="row-body">
-                    <div class="row-lbl">Sinking Fund</div>
+                    <div class="row-lbl">Remaining Balance (Sinking Fund)</div>
                     <div class="row-val" id="dFund">₱0</div>
                 </div>
             </div>
@@ -550,10 +580,17 @@
     <div class="sect">
         <div class="sect-header">
             <div class="sect-title">Attendance</div>
-            <select class="year-filter" id="yearFilter">
-                <option value="2026" selected>This Year</option>
-                <option value="all">All Time</option>
-            </select>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <button id="btnRefresh" class="refresh-btn" title="Refresh Data">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                </button>
+                <select class="year-filter" id="yearFilter">
+                    <option value="all" selected>All Time</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
         </div>
         <div class="charts-grid">
             <div class="chart-card">
@@ -1039,42 +1076,171 @@
                     $('dAddress').textContent = m.address || '—';
                     $('dUniform').textContent = m.uniform_size || '—';
                     $('dFund').textContent = '₱' + (m.sinking_fund_balance || 0);
+
+                    // Setup Actions
+                    if (m.cellphone_number) {
+                        $('linkPhone').href = 'tel:' + m.cellphone_number;
+                        $('linkPhone').style.display = 'flex';
+                    } else {
+                        $('linkPhone').style.display = 'none';
+                    }
+
+                    if (m.address && m.address !== '—') {
+                        $('linkAddress').href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(m.address);
+                        $('linkAddress').style.display = 'flex';
+                    } else {
+                        $('linkAddress').style.display = 'none';
+                    }
                 } else {
                     console.warn("Member with ID " + memberId + " not found in the list.");
                 }
 
                 // Load & cache attendance records via FirebaseService
                 console.log("Fetching attendance records...");
+                
+                // 1. Get cloud records
                 var cloudRecords = await window.FirebaseService.fetchAllDocs('attendance_records');
-                allRecords = [];
+                
+                // 2. Get local records (consistent with app.js)
+                var localRecords = [];
+                for (var i = 0; i < localStorage.length; i++) {
+                    var key = localStorage.key(i);
+                    if (key && key.startsWith('attendance_records-')) {
+                        try {
+                            var data = JSON.parse(localStorage.getItem(key));
+                            if (data) localRecords.push(Object.assign({ id: key.replace('attendance_records-', '') }, data));
+                        } catch(e) {}
+                    }
+                }
 
-                cloudRecords.forEach(function(r) {
-                    var ds = r.date || r.id;
-                    var p = ds.split('-').map(Number);
-                    if (p.length < 3) return;
+                // Merge: Cloud records take precedence if they have newer updatedAt
+                var combined = [].concat(cloudRecords);
+                localRecords.forEach(function(lr) {
+                    var match = combined.find(function(cr) { return cr.id === lr.id; });
+                    if (!match) {
+                        combined.push(lr);
+                    } else if (lr.updatedAt && match.updatedAt && lr.updatedAt > match.updatedAt) {
+                        var idx = combined.indexOf(match);
+                        combined[idx] = lr;
+                    }
+                });
+
+                allRecords = [];
+                var bruteForceCount = 0;
+                
+                // Visible Debug Banner (Hidden by default, shows if no data)
+                var debugInfo = { id: memberId, name: memberName, recordsFound: combined.length, matches: 0 };
+                console.log("DEBUG INFO:", debugInfo);
+
+                combined.forEach(function(r) {
+                    var ds = r.date || r.id || "";
+                    if (!ds) return;
+                    
+                    // Ultra-Robust Date Parsing
+                    var dt;
+                    var dateParts = ds.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+                    if (dateParts) {
+                        dt = new Date(parseInt(dateParts[1]), parseInt(dateParts[2]) - 1, parseInt(dateParts[3]));
+                    } else {
+                        dt = new Date(ds);
+                    }
+                    
+                    if (!dt || isNaN(dt.getTime())) return;
+                    
+                    var year = dt.getFullYear();
+                    var isSunday = dt.getDay() === 0;
+                    var isSaturday = dt.getDay() === 6;
                     
                     var ids = r.presentIds || [];
-                    var members = r.members || [];
-                    var exempt = members.find(function(rm){return rm.id===memberId;});
-                    var wasCebu = exempt && exempt.labels && (exempt.labels.at_cebu || exempt.labels.at_cebu === true);
+                    var membersSnap = r.members || [];
+                    
+                    var targetId = String(memberId || "").trim().toUpperCase();
+                    var targetName = (currentMember ? currentMember.name : (memberName || "")).toLowerCase().trim();
+                    var isPresent = false;
+                    var wasCebu = false;
 
+                    // A. Check IDs in presentIds array
+                    if (ids.some(function(id) { 
+                        var cid = String(id || "").trim().toUpperCase();
+                        return cid === targetId;
+                    })) {
+                        isPresent = true;
+                    }
+
+                    // B. Check Names in presentIds array (Fallback for name-based IDs)
+                    if (!isPresent) {
+                        isPresent = ids.some(function(id) {
+                            var sid = String(id || "").toLowerCase().trim();
+                            return sid === targetName || (sid.length > 5 && (sid.indexOf(targetName) !== -1 || targetName.indexOf(sid) !== -1));
+                        });
+                    }
+
+                    // C. Deep Snapshot Check
+                    if (membersSnap.length > 0) {
+                        var snapMatch = membersSnap.find(function(m) {
+                            var mid = String(m.id || "").trim().toUpperCase();
+                            var mname = (m.name || "").toLowerCase().trim();
+                            var nameMatches = mname === targetName || 
+                                             (mname.length > 5 && (mname.indexOf(targetName) !== -1 || targetName.indexOf(mname) !== -1));
+                            return mid === targetId || nameMatches;
+                        });
+                        
+                        if (snapMatch) {
+                            if (!isPresent && (snapMatch.status === 'present' || snapMatch.selected === true)) isPresent = true;
+                            if (snapMatch.status === 'exempt' || (snapMatch.labels && snapMatch.labels.at_cebu)) wasCebu = true;
+                        }
+                    }
+
+                    // Consistency Check: Count as Saturday if it's not Sunday (to match Saturday/Sunday behavior)
+                    // If it's a weekday, we still count it for total days to avoid 0% issues if sessions happen on weekdays
+                    
+                    if (isPresent) bruteForceCount++;
+                    
                     allRecords.push({
-                        year: p[0],
-                        isSunday: new Date(p[0], p[1]-1, p[2]).getDay() === 0,
-                        isPresent: ids.includes(memberId),
+                        date: ds,
+                        year: year,
+                        isSunday: isSunday,
+                        isPresent: isPresent,
                         wasExempt: !!wasCebu,
-                        hadAttendees: ids.length > 0
+                        hadAttendees: ids.length > 0 || membersSnap.length > 0
                     });
                 });
 
-                console.log("Processed " + allRecords.length + " attendance records.");
+                console.log("Stats update for " + targetName + ": " + bruteForceCount + " present out of " + allRecords.length + " relevant days.");
+                
+                // Final Debug UI Update
+                $('debugId').textContent = targetId;
+                $('debugName').textContent = targetName;
+                $('debugRaw').textContent = combined.length;
+                $('debugMatch').textContent = bruteForceCount;
+                if (bruteForceCount === 0 || allRecords.length === 0) {
+                    $('debugBar').style.display = 'block';
+                }
+
+                $('yearFilter').value = 'all'; // Default to 'All Time'
                 renderAttendance('all');
 
                 // Load transactions
                 try {
-                    console.log("Fetching transactions for:", memberId);
-                    var txns = await window.FirebaseService.fetchAllDocs('sinking_fund_transactions');
-                    var memberTxns = txns.filter(function(t) { return t.memberId === memberId; });
+                    console.log("Fetching transactions...");
+                    var cloudTxns = await window.FirebaseService.fetchAllDocs('sinking_fund_transactions');
+                    
+                    // Local fallback
+                    var localTxns = [];
+                    for (var i = 0; i < localStorage.length; i++) {
+                        var key = localStorage.key(i);
+                        if (key && key.startsWith('sinking_fund_transactions-')) {
+                            try {
+                                var t = JSON.parse(localStorage.getItem(key));
+                                if (t) localTxns.push(t);
+                            } catch(e) {}
+                        }
+                    }
+
+                    var allTxns = cloudTxns.concat(localTxns);
+                    var memberTxns = allTxns.filter(function(t) { 
+                        return t.memberId === memberId || (t.name && currentMember && t.name.trim().toLowerCase() === currentMember.name.trim().toLowerCase());
+                    });
                     renderTransactions(memberTxns);
                 } catch(err) {
                     console.warn("Failed to fetch transactions:", err);
