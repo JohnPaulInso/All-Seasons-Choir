@@ -39,9 +39,7 @@ function parseCSV(content) {
     dataLines.forEach(line => {
         if (!line.trim() || line.startsWith('\u200e')) return;
         
-        // Simple regex to split CSV with quotes
-        const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
-        // Wait, the above regex is tricky for empty fields. Let's use a better approach.
+        // Better CSV parsing to handle quotes properly
         const row = [];
         let inQuotes = false;
         let current = '';
@@ -58,25 +56,26 @@ function parseCSV(content) {
         }
         row.push(current.trim());
 
-        if (row.length < 5) return;
+        // Skip genuinely invalid rows (must have at least a name)
+        if (row.length === 0 || !row[0] || row[0].trim() === '') return;
 
         members.push({
             name: row[0].replace(/"/g, ''),
-            voice_type: row[1].replace(/"/g, ''),
-            birthday: normalizeBirthday(row[2].replace(/"/g, '')),
-            age: row[3] ? parseInt(row[3]) : null,
-            gender: row[4].replace(/"/g, ''),
-            uniform_size: row[5].replace(/"/g, ''),
-            cellphone_number: row[6] ? (row[6].startsWith('9') ? '0' + row[6] : row[6]) : '',
-            address: row[7].replace(/"/g, ''),
-            balance: row[8] ? parseFloat(row[8]) : 0
+            voice_type: row[1] ? row[1].replace(/"/g, '') : '',
+            birthday: row[2] ? normalizeBirthday(row[2].replace(/"/g, '')) : '',
+            age: row[3] && !isNaN(parseInt(row[3])) ? parseInt(row[3]) : null,
+            gender: row[4] ? row[4].replace(/"/g, '') : '',
+            uniform_size: row[5] ? row[5].replace(/"/g, '') : '',
+            cellphone_number: row[6] ? (row[6].startsWith('9') ? '0' + row[6] : row[6].replace(/\s/g, '')) : '',
+            address: row[7] ? row[7].replace(/"/g, '') : '',
+            balance: row[8] && !isNaN(parseFloat(row[8])) ? parseFloat(row[8]) : 0
         });
     });
     return members;
 }
 
 const existing = JSON.parse(fs.readFileSync('infos.json', 'utf8'));
-const csvContent = fs.readFileSync('ASC Profiling - backup.csv', 'utf8');
+const csvContent = fs.readFileSync('members_details.csv', 'utf8');
 const updates = parseCSV(csvContent);
 
 console.log(`Read ${updates.length} records from CSV.`);
